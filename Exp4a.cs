@@ -30,7 +30,6 @@ public class Exp4a : MonoBehaviour
     private Vector3 pos_camera, pos_person;
     static M3DCharacterManager m3dc;
     private bool sytex;
-    private GameObject eye;
     private bool infoMessage = false;
     private int loopNum;
     private int start;
@@ -64,7 +63,6 @@ public class Exp4a : MonoBehaviour
     {
         GetComponent<UpsyVR_ExpFactor_Generator>().setVal();
         controller = GameObject.Find("UpsyVR_VRController");
-        eye = GameObject.Find("Camera (eye)");
         float[,] trial_conbinefactor = UpsyVR_ExpFactor_Generator.ExpFactor_Generator();
         Trials = TiralGenerater(UpsyVR_ExpFactor_Generator.ExpFactor_Generator(), repeat);
         trial_total = trial_conbinefactor.GetLength(0) * repeat;
@@ -257,7 +255,6 @@ public class Exp4a : MonoBehaviour
         {
             a.SetActive(false);
         }
-        eye.GetComponent<UpsyVR_Reposition>()._repos();
         int[] random_crowd = RandomSequence(crowd.GetLength(0));
         foreach (GameObject a in crowd)
         {
@@ -304,7 +301,6 @@ public class Exp4a : MonoBehaviour
         walkingSpeed = 1.0f;//行走速度为1，因为前面控制人物停止行动的时候设置为0了
         isStop = false;
         sytex = true;
-        eye.GetComponent<UpsyVR_Reposition>()._repos();
         int[] random_crowd = RandomSequence(crowd.GetLength(0));
         RandomIndex = UnityEngine.Random.Range(0, (int)trial_total);
         crowd_pos = new List<float[]>();
@@ -329,7 +325,6 @@ public class Exp4a : MonoBehaviour
         walkingSpeed = 1.0f;//行走速度为1，因为前面控制人物停止行动的时候设置为0了
         isStop = false;
         sytex = true;
-        eye.GetComponent<UpsyVR_Reposition>()._repos();
         int[] random_crowd = RandomSequence(crowd.GetLength(0));
         crowd_pos = new List<float[]>();
         crowd_pos = avaliable_position((int)Trials[trial_current, 1]);
